@@ -1,33 +1,35 @@
 package skeleton;
-import static org.junit.Assert.assertTrue;
 
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
-import cucumber.api.java.en.Then;
 
 public class Stepdefs {
-	
-	Belly belly = new Belly(); 
-	
-    @Given("I have eaten (\\d+) cukes")
-    public void I_have_eaten_cukes(int cukes) throws Throwable {
-        System.out.println("I'm eating " + cukes + " cukes!");
-    	belly.eat(cukes);
-    }
-    
-    @When("I wait (\\d+) hour")
-    public void i_wait_hour(int arg1) throws Throwable {
-        belly.wait(arg1);
+    @When("^test_posint (\\d+)$")
+    public void testPositiveInteger(int number) throws Throwable {
+        System.out.println("test_posint true for: " + number);
     }
 
-    @Then("(?i)my\\s*belly\\s*should\\s*growl")
-    public void my_belly_should_growl() throws Throwable {
-    	assertTrue(belly.isGrowling());
+    @When("^test_int (-?\\d+)$")
+    public void testInteger(int number) throws Throwable {
+        System.out.println("test_int true for: " + number);
     }
-    
-    @Then("(?i)my\\s*belly\\s*should\\s*not\\s*growl")
-    public void my_belly_should_not_growl() throws Throwable {
-    	assertTrue(!belly.isGrowling());
+
+    @When("^test_float [+-]?([0-9]*[.])?[0-9]+$")
+    public void testFloat(float number) throws Throwable {
+        System.out.println("test_float true for: " + number);
     }
-    
+
+    @When("^test_ip_address ((?:(?:(?:\\d)|(?:1[0-2]\\d)|(?:[1-9]\\d))\\.){3}(?:(?:\\d)|(?:[1-9]\\d)|(?:1[0-2]\\d)))$")
+    public void testIPAddress(String ipAddress) throws Throwable {
+        System.out.println("test_ip_address true for: " + ipAddress);
+    }
+
+    @When("^test_splitter (?:\\bspill|Sponge|tap|rebuild\\b)((?!si|egregious|Foul|Test|top|ta|\\w).)*$")
+    public void testSplitter(String match) throws Throwable {
+        System.out.println("test_splitter true for: " + match);
+    }
+
+    @When("^test_splitter2 (?:\\bspill|Sponge|tap|rebuild\\b)((?!spall|egregious|foul|test|top|tapper|\\w).)*$")
+    public void testSplitter2(String match) throws Throwable {
+        System.out.println("test_splitter2 true for: " + match);
+    }
 }
